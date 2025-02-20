@@ -2,7 +2,6 @@
 
 import { signIn } from "next-auth/react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { z } from "zod";
 
@@ -31,8 +30,6 @@ const SignInPage = () => {
       [name]: type === "checkbox" ? checked : value,
     });
   };
-
-  const router = useRouter();
 
   const onSubmit = async (e: any) => {
     e.preventDefault();
