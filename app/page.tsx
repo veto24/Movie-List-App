@@ -12,7 +12,7 @@ import Pagination from "./components/Pagination";
 const Movies = async ({
   searchParams,
 }: {
-  searchParams: { page?: string };
+  searchParams: { page?: string } | any;
 }) => {
   const currentPage = searchParams.page ? parseInt(searchParams.page, 10) : 1; // Get the page from URL or default to 1
   const limit = 8; // Same as API default
@@ -21,7 +21,7 @@ const Movies = async ({
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/movies?page=${currentPage}&limit=${limit}`
   );
 
-  const { movies, totalRecords, totalPages } = await response.json();
+  const { movies, totalPages } = await response.json();
 
   return (
     <div className="min-h-screen bg-darkBlue px-8 py-6">

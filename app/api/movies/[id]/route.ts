@@ -2,13 +2,13 @@ import prisma from "@/lib/db";
 import { NextResponse } from "next/server";
 
 // GET method to fetch a specific movie by ID
-export async function GET(
-  req: Request,
-  { params }: { params: { id: string } }
-) {
+export async function GET(req: Request) {
   try {
+    const url = new URL(req.url);
+    const id = url.pathname.split("/").pop();
+
     const movie = await prisma.movie.findUnique({
-      where: { id: params.id },
+      where: { id },
     });
 
     if (!movie) {

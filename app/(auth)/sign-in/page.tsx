@@ -18,7 +18,7 @@ const SignInPage = () => {
     password: "",
     rememberMe: false,
   });
-  const [errors, setErrors] = useState<Record<string, any>>({
+  const [errors, setErrors] = useState<Record<string, string>>({
     email: "",
     password: "",
   });

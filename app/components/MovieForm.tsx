@@ -10,6 +10,7 @@ import {
 import { useRouter } from "next/navigation";
 import { z } from "zod";
 import { TrashIcon } from "@heroicons/react/24/outline";
+import Image from "next/image";
 
 if (
   !process.env.NEXT_PUBLIC_AWS_REGION ||
@@ -246,7 +247,7 @@ const MovieForm: React.FC<MovieFormProps> = ({
         {file ? (
           <div className="text-white flex flex-col items-center">
             <p>{file.name}</p>
-            <img
+            <Image
               src={URL.createObjectURL(file)}
               alt="Preview"
               className="mt-4 max-h-40"
@@ -255,7 +256,7 @@ const MovieForm: React.FC<MovieFormProps> = ({
         ) : (
           <div className="text-white flex flex-col items-center">
             {fileUrl && (
-              <img
+              <Image
                 src={fileUrl}
                 alt="Current Image"
                 className="mt-4 max-h-40"
