@@ -245,25 +245,31 @@ const MovieForm: React.FC<MovieFormProps> = ({
       >
         <input {...getInputProps()} />
         {file ? (
-          <div className="text-white flex flex-col items-center">
-            <p>{file.name}</p>
+          <div className="flex flex-col items-center justify-center h-full w-full p-4">
             <Image
               src={URL.createObjectURL(file)}
+              width={200}
+              height={250}
+              objectFit="cover"
               alt="Preview"
-              className="mt-4 max-h-40"
+              className="rounded-md"
             />
+            <p className="text-white mt-2 text-center">{file.name}</p>
+          </div>
+        ) : fileUrl ? (
+          <div className="flex flex-col items-center justify-center h-full w-full p-4">
+            <Image
+              src={fileUrl}
+              width={200}
+              height={250}
+              objectFit="cover"
+              alt="Current Image"
+              className="rounded-md"
+            />
+            <p className="text-white mt-2">Drop an image to replace</p>
           </div>
         ) : (
-          <div className="text-white flex flex-col items-center">
-            {fileUrl && (
-              <Image
-                src={fileUrl}
-                alt="Current Image"
-                className="mt-4 max-h-40"
-              />
-            )}
-            <p>📂 Drop an image here to replace</p>
-          </div>
+          <p className="text-white">📂 Drop an image here</p>
         )}
         {errors.file && <p className="text-error mt-1">{errors.file}</p>}
       </div>

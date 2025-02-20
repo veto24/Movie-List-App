@@ -14,8 +14,8 @@ const Movies = async ({
 }: {
   searchParams: { page?: string } | any;
 }) => {
-  const currentPage = searchParams.page ? parseInt(searchParams.page, 10) : 1; // Get the page from URL or default to 1
-  const limit = 8; // Same as API default
+  const currentPage = searchParams.page ? parseInt(searchParams.page, 10) : 1;
+  const limit = 8;
 
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/movies?page=${currentPage}&limit=${limit}`
@@ -24,7 +24,7 @@ const Movies = async ({
   const { movies, totalPages } = await response.json();
 
   return (
-    <div className="min-h-screen bg-darkBlue px-8 py-6">
+    <div className="min-h-screen px-8 py-6">
       {/* Header */}
       <div className="flex justify-between items-center mb-6">
         <div className="flex items-center space-x-2">
@@ -64,7 +64,7 @@ const Movies = async ({
           </h2>
           <Link
             href="/movies/create"
-            className="mt-4 bg-green-500 text-white px-6 py-3 rounded-md font-semibold hover:bg-green-600 transition duration-300"
+            className="mt-4 bg-primary text-white px-6 py-3 rounded-md font-semibold hover:bg-green-600 transition duration-300"
           >
             Add a new movie
           </Link>
@@ -78,13 +78,13 @@ const Movies = async ({
                 <div className="bg-[#153041] p-4 rounded-lg shadow-lg cursor-pointer hover:bg-[#1e434e] transition duration-300">
                   <div
                     className="relative w-full"
-                    style={{ paddingBottom: "125%" }}
+                    style={{ paddingBottom: "125%" }} // 4/5 ratio = 0.8, so height = 125% of width
                   >
                     <Image
                       src={movie.poster}
                       alt={movie.title}
-                      layout="fill"
-                      objectFit="cover"
+                      layout="fill" // Changed to fill to occupy container
+                      objectFit="cover" // Changed to cover to maintain aspect ratio
                       className="rounded-md"
                     />
                   </div>
