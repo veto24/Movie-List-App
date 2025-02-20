@@ -67,8 +67,9 @@ const SignInPage = () => {
       }));
     } else {
       console.log("Route to movies page"); // After successful authentication
-      router.refresh(); // Refresh the router state
-      router.push("/"); // Redirect the user to the desired URL
+      // router.refresh(); // Refresh the router state
+      // router.push("/"); // Redirect the user to the desired URL
+      window.location.href = "/"; // Hard redirect
     }
   };
 
