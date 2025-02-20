@@ -6,7 +6,6 @@ import { compare } from "bcrypt";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   adapter: PrismaAdapter(prisma),
-  secret: process.env.NEXTAUTH_SECRET,
   pages: {
     signIn: "/sign-in",
   },
@@ -65,4 +64,5 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       return session;
     },
   },
+  secret: process.env.NEXTAUTH_SECRET,
 });
