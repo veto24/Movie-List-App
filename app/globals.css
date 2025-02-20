@@ -7,20 +7,10 @@
 }
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #093545;
+  --foreground: #ededed;
   --font-montserrat: 'Montserrat', sans-serif;
 }
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* --background: #0a0a0a; */
-    --background: #093545; 
-    --foreground: #ededed;
-  }
-}
-
-/* NOTE: ADD MIDDLEWARE FOR ROUTE CHECKING AUTH */
 
 body {
   color: var(--foreground);
