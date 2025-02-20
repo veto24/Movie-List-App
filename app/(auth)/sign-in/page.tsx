@@ -51,22 +51,17 @@ const SignInPage = () => {
     const signInData = await signIn("credentials", {
       email: formData.email,
       password: formData.password,
-      redirect: false,
+      redirect: true,
+      redirectTo: "/", // Redirect to root after success
     });
 
-    console.log("signinData", signInData);
-
+    // If redirect fails (e.g., error case), handle it here
     if (signInData?.error) {
       console.log("signInData.error", signInData.error);
       setErrors((prevErrors) => ({
         ...prevErrors,
         password: "Invalid credentials",
       }));
-    } else {
-      console.log("Route to movies page"); // After successful authentication
-      // router.refresh(); // Refresh the router state
-      // router.push("/"); // Redirect the user to the desired URL
-      window.location.href = "/"; // Hard redirect
     }
   };
 
