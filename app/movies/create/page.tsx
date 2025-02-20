@@ -1,10 +1,17 @@
 "use client";
 
 import MovieForm from "@/app/components/MovieForm";
+import Unauthenticated from "@/app/components/Unauthenticated";
+import { auth } from "@/auth";
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 const CreateMoviePage = () => {
   const router = useRouter();
+
+  const session = useSession();
+
+  if (!session?.data?.user) return <Unauthenticated />;
 
   const handleSubmit = async (formData: {
     title: string;
@@ -12,13 +19,16 @@ const CreateMoviePage = () => {
     fileUrl: string;
   }) => {
     try {
-      const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL + "/api/movies", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        process.env.NEXT_PUBLIC_BASE_URL + "/api/movies",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
       await response.json();
 

@@ -5,22 +5,25 @@ import {
   ArrowRightStartOnRectangleIcon,
   PlusCircleIcon,
 } from "@heroicons/react/24/outline";
-import { signOut } from "@/auth";
+import { auth, signOut } from "@/auth";
 import { Movie } from "@prisma/client";
 import Pagination from "./components/Pagination";
+import Unauthenticated from "./components/Unauthenticated";
 
 const Movies = async ({
   searchParams,
 }: {
   searchParams: { page?: string } | any;
 }) => {
+  const session = await auth();
+
+  if (!session?.user) return <Unauthenticated />;
+
   const currentPage = searchParams.page ? parseInt(searchParams.page, 10) : 1;
   const limit = 8;
-
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/movies?page=${currentPage}&limit=${limit}`
   );
-
   const { movies, totalPages } = await response.json();
 
   return (

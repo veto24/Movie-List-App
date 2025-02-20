@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import MovieForm from "@/app/components/MovieForm";
+import { useSession } from "next-auth/react";
+import Unauthenticated from "@/app/components/Unauthenticated";
 
 const EditMovie = ({ params }: { params: Promise<{ id: string }> }) => {
   const [movieId, setMovieId] = useState<string | null>(null);
@@ -13,6 +15,7 @@ const EditMovie = ({ params }: { params: Promise<{ id: string }> }) => {
   } | null>(null);
 
   const router = useRouter();
+  const session = useSession();
 
   useEffect(() => {
     const unwrapParams = async () => {
@@ -97,6 +100,8 @@ const EditMovie = ({ params }: { params: Promise<{ id: string }> }) => {
       console.error("Error deleting movie:", error);
     }
   };
+
+  if (!session?.data?.user) return <Unauthenticated />;
 
   if (!initialData) {
     return (
