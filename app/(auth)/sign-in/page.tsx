@@ -57,6 +57,8 @@ const SignInPage = () => {
       redirect: false,
     });
 
+    console.log("signinData", signInData);
+
     if (signInData?.error) {
       console.log("signInData.error", signInData.error);
       setErrors((prevErrors) => ({
@@ -64,6 +66,7 @@ const SignInPage = () => {
         password: "Invalid credentials",
       }));
     } else {
+      console.log("Route to movies page");
       router.push("/");
     }
   };
