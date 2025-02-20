@@ -2,20 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
+.border-error {
+  border-color: #EB5659; /* Adjust as needed */
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --font-montserrat: 'Montserrat', sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    /* --background: #0a0a0a; */
+    --background: #093545; 
     --foreground: #ededed;
   }
 }
 
+/* NOTE: ADD MIDDLEWARE FOR ROUTE CHECKING AUTH */
+
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  /* font-family: Arial, Helvetica, sans-serif; */
+  font-family: var(--font-montserrat);
 }
