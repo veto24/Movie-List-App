@@ -4,12 +4,15 @@ import Credentials from "next-auth/providers/credentials";
 import prisma from "./lib/db";
 import { compare } from "bcrypt";
 
-// Log and throw if secret is missing
-console.log("NEXTAUTH_SECRET:", process.env.NEXTAUTH_SECRET);
+console.log("Environment variables:", {
+  NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
+  NEXTAUTH_URL: process.env.NEXTAUTH_URL,
+  NODE_ENV: process.env.NODE_ENV,
+});
+
 if (!process.env.NEXTAUTH_SECRET) {
   throw new Error("NEXTAUTH_SECRET is not defined in environment variables");
 }
-
 export const { handlers, signIn, signOut, auth } = NextAuth({
   adapter: PrismaAdapter(prisma),
   pages: {
