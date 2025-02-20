@@ -25,6 +25,7 @@ const SignInPage = () => {
 
   const handleChange = (e: any) => {
     const { name, value, type, checked } = e.target;
+    console.log(process.env.NEXTAUTH_SECRET); // temporary
     setFormData({
       ...formData,
       [name]: type === "checkbox" ? checked : value,
