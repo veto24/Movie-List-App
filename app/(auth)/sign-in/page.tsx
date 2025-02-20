@@ -66,8 +66,9 @@ const SignInPage = () => {
         password: "Invalid credentials",
       }));
     } else {
-      console.log("Route to movies page");
-      router.push("/");
+      console.log("Route to movies page"); // After successful authentication
+      router.refresh(); // Refresh the router state
+      router.push("/"); // Redirect the user to the desired URL
     }
   };
 
